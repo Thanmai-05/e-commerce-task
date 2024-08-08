@@ -14,6 +14,7 @@ function App() {
   const fetchProducts = async () => {
     const response = await axios.get(`${BACKEND_URL}/products`);
     setProducts(response.data);
+    console.log("products: ",response.data)
   };
 
   const addProduct = async () => {

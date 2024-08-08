@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './App.css';
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 
 function App() {
   const [products, setProducts] = useState([]);
@@ -11,19 +12,19 @@ function App() {
   }, []);
 
   const fetchProducts = async () => {
-    const response = await axios.get('http://localhost:3001/products');
+    const response = await axios.get(`${BACKEND_URL}/products`);
     setProducts(response.data);
   };
 
   const addProduct = async () => {
     console.log("hiiiiiiiiii")
-    await axios.post('http://localhost:3001/products', newProduct);
+    await axios.post(`${BACKEND_URL}/products`, newProduct);
     setNewProduct({ name: '', description: '', price: 0 });
     fetchProducts();
   };
 
   const deleteProduct = async (id) => {
-    await axios.delete(`http://localhost:3001/products/${id}`);
+    await axios.delete(`${BACKEND_URL}/products/${id}`);
     fetchProducts();
   };
 

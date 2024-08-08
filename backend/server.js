@@ -4,7 +4,8 @@ const cors = require('cors');
 const dotenv = require('dotenv')
 const app = express();
 const PORT = process.env.PORT || 3001;
-dotenv.config()
+dotenv.config();
+
 // Connect to MongoDB
 const connectToDb = async()=>{
     try{
@@ -62,6 +63,13 @@ app.delete('/products/:id', async (req, res) => {
   }
 });
 
-app.listen(PORT, () => {
+let server = app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
+
+const closeServer = async()=>{
+    if(server){
+        await server.close();
+    }
+}
+module.exports = {app, Product, closeServer};

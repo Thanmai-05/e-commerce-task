@@ -12,21 +12,33 @@ function App() {
   }, []);
 
   const fetchProducts = async () => {
+    try {
     const response = await axios.get(`${BACKEND_URL}/products`);
     setProducts(response.data);
-    console.log("products: ",response.data)
+    console.log("products: ",response.data)}
+    catch (error) {
+      console.error(error);
+      }
   };
 
   const addProduct = async () => {
     console.log("hiiiiiiiiii")
+    try{
     await axios.post(`${BACKEND_URL}/products`, newProduct);
     setNewProduct({ name: '', description: '', price: 0 });
     fetchProducts();
+    }catch(error){
+      console.log(error);
+    }
   };
 
   const deleteProduct = async (id) => {
+    try {
     await axios.delete(`${BACKEND_URL}/products/${id}`);
     fetchProducts();
+    } catch (error) {
+      console.error(error);
+      }
   };
 
   return (

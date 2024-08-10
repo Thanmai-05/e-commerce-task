@@ -9,7 +9,7 @@ dotenv.config();
 // Connect to MongoDB
 const connectToDb = async()=>{
     try{
-        await mongoose.connect(`mongodb+srv://Thanmai:${process.env.SECRET_KEY}@cluster0.6leylld.mongodb.net/ecommerce?retryWrites=true&w=majority`, {
+        await mongoose.connect(`${process.env.MONGODB_URI}`, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
         })

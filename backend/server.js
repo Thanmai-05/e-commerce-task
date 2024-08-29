@@ -32,9 +32,9 @@ const Product = mongoose.model('Product', {
 // Endpoints
 app.get('/products', async (req, res) => {
     try{
-        console.log("TTTTTTT")
+        //console.log("TTTTTTT")
   const products = await Product.find({});
-  console.log(products)
+  //console.log(products)
   res.json(products);}
   catch(error){
     console.log(error);
@@ -44,7 +44,7 @@ app.get('/products', async (req, res) => {
 app.post('/products', async (req, res) => {
     try{
   const { name, description, price } = req.body;
-  console.log("add product :",name ,description, price)
+  //console.log("add product :",name ,description, price)
   const newProduct = new Product({ name, description, price });
   await newProduct.save();
   res.status(201).json(newProduct);

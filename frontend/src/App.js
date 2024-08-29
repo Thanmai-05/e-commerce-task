@@ -9,20 +9,21 @@ function App() {
 
   useEffect(() => {
     fetchProducts();
-  });
+  },[]);
 
   const fetchProducts = async () => {
     try {
     const response = await axios.get(`${BACKEND_URL}/products`);
     setProducts(response.data);
-    console.log("products: ",response.data)}
+    //console.log("products: ",response.data)
+    }
     catch (error) {
       console.error(error);
       }
   };
 
   const addProduct = async () => {
-    console.log("hiiiiiiiiii")
+    //console.log("hiiiiiiiiii")
     try{
     await axios.post(`${BACKEND_URL}/products`, newProduct);
     setNewProduct({ name: '', description: '', price: 0 });
@@ -70,7 +71,7 @@ function App() {
           value={newProduct.price}
           onChange={(e) => setNewProduct({ ...newProduct, price: e.target.value })}
         />
-        <button onClick={addProduct}>Add</button>
+        <button onClick={addProduct} type='submit'>Add</button>
       </div>
       <div className="product-list">
         <h2>Products</h2>
